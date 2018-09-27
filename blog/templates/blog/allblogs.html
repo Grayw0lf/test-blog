@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+
+{% block tiile %}
+All blogs
+{% endblock %}
+
+{% block content %}
+<h1>All blogs</h1>
+    <ul>
+    {% for user in user_list %}
+        <li>
+        <a href="{% url 'blog:user_blog' user.pk %}">
+        {{ user.username }}
+        </a>
+        </li>
+    {% endfor %}
+
+    </ul>
+{% endblock %}

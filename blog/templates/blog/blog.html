@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+
+{% block tiile %}
+    My blog
+{% endblock %}
+{% block content %}
+    <h1>My blog</h1>
+    <a href="{% url 'blog:add_article' %}">Добавить статью</a>
+    {% for article in object_list %}
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.created }}</p>
+        <p>{{ article.author }}</p>
+        <p>{{ article.text }}</p>
+        <hr>
+    {% endfor %}
+{% endblock %}
