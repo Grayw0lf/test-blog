@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+
+{% block tiile %}
+    {{ object.title }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ object.title }}</h1>
+    <p>{{ object.created }}</p>
+    <p>{{ object.author }}</p>
+    <p>{{ object.text }}</p>
+{% endblock %}
