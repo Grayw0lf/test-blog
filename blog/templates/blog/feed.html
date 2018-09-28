@@ -6,8 +6,14 @@ Feed
 
 {% block content %}
 <h1>Feed</h1>
+    <ul>
     {% for article in object_list %}
-
+        <li>
+            <a href="{{ article.get_absolute_url }}">
+                {{ article.title }}
+            </a>
+        </li>
     {% endfor %}
+    </ul>
 
 {% endblock %}

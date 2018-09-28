@@ -7,10 +7,11 @@
     <h1>My blog</h1>
     <a href="{% url 'blog:add_article' %}">Добавить статью</a>
     {% for article in object_list %}
-        <h2>{{ article.title }}</h2>
-        <p>{{ article.created }}</p>
-        <p>{{ article.author }}</p>
-        <p>{{ article.text }}</p>
+        <h2>
+            <a href="{{ article.get_absolute_url }}">
+                {{ article.title }}
+            </a>
+        </h2>
         <hr>
     {% endfor %}
 {% endblock %}

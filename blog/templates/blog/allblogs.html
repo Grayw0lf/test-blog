@@ -10,10 +10,17 @@ All blogs
     {% for user in user_list %}
         <li>
         <a href="{% url 'blog:user_blog' user.pk %}">
-        {{ user.username }}
+        {% if request.user.username != user.username %}
+            {% if user.first_name != '' or user.last_name != '' %}
+                {{ user.first_name }} {{ user.last_name }}
+            {% else %}
+                {{ user.username }}
+            {% endif %}
+        {% else %}
+            My blog
+        {% endif %}
         </a>
         </li>
     {% endfor %}
-
     </ul>
 {% endblock %}

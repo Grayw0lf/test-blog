@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views import View
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, DetailView
 
 from .models import Article, Subscribe, Mark
 
@@ -15,6 +15,11 @@ class AllBlogsView(ListView):
 
     def get_queryset(self):
         return User.objects.all()
+
+
+class ArticleDetail(DetailView):
+    model = Article
+    template_name = 'blog/article_detail.html'
 
 
 @method_decorator(login_required, name='dispatch')
@@ -43,7 +48,7 @@ class Feed(ListView):
 
     def get_queryset(self):
         subscribes = Subscribe.objects.filter(follower_id=self.request.user.pk).values_list('target_id', flat=True)
-        return Article.objects.filter(author_id__in=subscribes)
+        return Article.objects.filter(author_id__in=subscribes).order_by('-created')
 
 
 @method_decorator(login_required, name='dispatch')
