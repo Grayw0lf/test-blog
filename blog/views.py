@@ -31,7 +31,8 @@ class CreateArticleView(CreateView):
     def form_valid(self, form):
         form_data = form.cleaned_data
         Article.objects.create(author=self.request.user, **form_data)
-        return HttpResponseRedirect(reverse('blog:user_blog', args=[self.request.user.pk]))
+        return HttpResponseRedirect(reverse('blog:user_blog',
+                                            args=[self.request.user.pk]))
 
 
 class Blog(ListView):
